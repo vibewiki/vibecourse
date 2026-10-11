@@ -1,0 +1,95 @@
+{{- /* Боковое меню: девять ступеней курса и материалы каждой. Печатается дважды — слева на широком экране
+       и в выдвижном ящике справа на узком. Названия ступеней вписаны сюда: движок не умеет циклов по числам.
+       Ступень без материалов видна тусклой — по ней понятно, что будет дальше. */ -}}
+<nav class="side__nav" aria-label="Содержание курса">
+  <div class="side__step{{ if not .Collections.step_1.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">1</span>Что это и чего ждать</p>
+    {{- if .Collections.step_1.Items }}
+    <ul>
+      {{- range .Collections.step_1.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_2.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">2</span>Доступ: оплатить и установить</p>
+    {{- if .Collections.step_2.Items }}
+    <ul>
+      {{- range .Collections.step_2.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_3.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">3</span>Первый разговор</p>
+    {{- if .Collections.step_3.Items }}
+    <ul>
+      {{- range .Collections.step_3.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_4.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">4</span>Первая вещь</p>
+    {{- if .Collections.step_4.Items }}
+    <ul>
+      {{- range .Collections.step_4.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_5.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">5</span>В интернет</p>
+    {{- if .Collections.step_5.Items }}
+    <ul>
+      {{- range .Collections.step_5.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_6.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">6</span>Первое приложение</p>
+    {{- if .Collections.step_6.Items }}
+    <ul>
+      {{- range .Collections.step_6.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_7.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">7</span>Бот</p>
+    {{- if .Collections.step_7.Items }}
+    <ul>
+      {{- range .Collections.step_7.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_8.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">8</span>Свои данные</p>
+    {{- if .Collections.step_8.Items }}
+    <ul>
+      {{- range .Collections.step_8.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  <div class="side__step{{ if not .Collections.step_9.Items }} side__step--empty{{ end }}">
+    <p class="side__title"><span class="side__num">9</span>Как не сломать</p>
+    {{- if .Collections.step_9.Items }}
+    <ul>
+      {{- range .Collections.step_9.Items }}
+      <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+</nav>

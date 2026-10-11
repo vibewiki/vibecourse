@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f5f6f7" />
+  <link rel="preload" as="font" type="font/woff2" href="{{ .AssetsBase }}/fonts/golos-text-cyrillic.woff2" crossorigin />
+  <link rel="stylesheet" href="{{ .AssetsBase }}/fonts.css" />
+  <link rel="stylesheet" href="{{ .AssetsBase }}/tokens.css" />
+  <link rel="stylesheet" href="{{ .AssetsBase }}/wiki.css" />
+  {{- if .Page.Description }}
+  <meta name="description" content="{{ .Page.Description }}" />
+  {{- end }}
+  {{- if .Meta.Robots }}
+  <meta name="robots" content="{{ .Meta.Robots }}" />
+  {{- end }}
+  {{- if .Canonical }}
+  <link rel="canonical" href="{{ .Canonical }}" />
+  {{- end }}
+  {{- range .Meta.OpenGraph }}
+  <meta property="{{ .Key }}" content="{{ .Value }}" />
+  {{- end }}
+  <title>{{ .Title }}</title>
+</head>
+<body>
+  {{- /* Узкий экран: полоса с названием и кнопкой, меню выезжает справа. Широкий: меню стоит слева, полосы нет. */}}
+  <header class="top">
+    <a class="top__brand" href="{{ .BaseURL }}/">{{ .Settings.site_name }}</a>
+    <button class="top__burger" type="button" data-drawer-open aria-controls="drawer" aria-expanded="false" aria-label="Открыть содержание"><span aria-hidden="true"></span></button>
+  </header>
+
+  <div class="wrap">
+    <aside class="side">
+      <a class="side__brand" href="{{ .BaseURL }}/">{{ .Settings.site_name }}</a>
+      <p class="side__note">{{ .Settings.site_note }}</p>
+      {{ template "sidebar.html" . }}
+    </aside>
+    <main class="main">
+      {{ .Body }}
+    </main>
+  </div>
+
+  <div class="overlay" data-drawer-overlay hidden></div>
+  <aside class="drawer" id="drawer" data-drawer aria-label="Содержание" aria-hidden="true" hidden>
+    <div class="drawer__head">
+      <span>Содержание</span>
+      <button class="drawer__close" type="button" data-drawer-close aria-label="Закрыть">✕</button>
+    </div>
+    {{ template "sidebar.html" . }}
+  </aside>
+  <script src="{{ .AssetsBase }}/wiki.js" defer></script>
+</body>
+</html>

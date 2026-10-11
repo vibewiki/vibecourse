@@ -1,0 +1,149 @@
+version: 1
+
+fields:
+  required: ["type", "slug", "title"]
+  optional:
+    - description
+    - draft
+    - noindex
+    - step          # ступень курса, строкой: "1" … "9" — в какой раздел бокового меню встаёт материал
+    - order         # место внутри ступени, по возрастанию
+    - author        # подпись под материалом — обязательна, проверяет scripts/check.py
+    - author_url    # куда ведёт подпись
+    - checked       # когда автор последний раз проделал это сам, словами: «11 октября 2026»
+    - tool          # на чём проверено: «Claude Code», «Cursor»…
+    - lead          # вводный абзац под заголовком
+  defaults:
+    draft: false
+
+fm_schema:
+  order: number
+  draft: boolean
+  noindex: boolean
+  step: string
+
+types:
+  home:
+    template: "home.html"
+    permalink: "/"
+    include_in: { sitemap: true, search: false }
+  article:
+    template: "article.html"
+    permalink: "/{{ slug }}/"
+    include_in: { sitemap: true, search: true }
+
+links: []
+
+# По коллекции на ступень: боковое меню (theme/templates/partials/sidebar.html) печатает их по очереди.
+# Новая ступень — это коллекция здесь, блок в sidebar.html и строка в STEPS у scripts/check.py.
+collections:
+  step_1:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "1" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_2:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "2" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_3:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "3" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_4:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "4" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_5:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "5" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_6:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "6" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_7:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "7" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_8:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "8" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+  step_9:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "9" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+
+sitemap:
+  include_types: ["home", "article"]
+  exclude_drafts: true
+
+search:
+  include_types: ["article"]
+  exclude_drafts: true
+  fields_boost: { title: 3, description: 2, body: 1 }
+  preview: { from: "description", max_len: 180 }
+
+validation:
+  single_page_of_type:
+    home: 1
+  duplicate_route: { action: "error" }
+  unknown_type: { action: "error" }
+  unique_slug: { action: "error" }
+  permalink_requires_slug: { action: "error" }
+  missing_template: { action: "error" }
+  materialize_requires_limit: true

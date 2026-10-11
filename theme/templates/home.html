@@ -1,0 +1,12 @@
+<article class="page">
+  <header class="page__head">
+    <p class="eyebrow">{{ .Settings.site_note }}</p>
+    <h1>{{ .Page.Title }}</h1>
+    {{- if .FM.lead }}
+    <p class="lead">{{ .FM.lead }}</p>
+    {{- end }}
+  </header>
+  <div class="prose">
+    {{ .Body }}
+  </div>
+</article>

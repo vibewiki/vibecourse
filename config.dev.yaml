@@ -1,0 +1,57 @@
+# Для просмотра у себя: те же настройки, адреса — локальные. scripts/preview.sh
+site:
+  id: vibecoding-wiki
+  base_url: "http://127.0.0.1:8087"
+  title: "Вайбкодинг с нуля"
+  description: "Открытый курс для тех, кто не программист: от оплаты и установки до своего сайта, приложения и бота."
+  default_og_image: ""
+  media_base_url: "http://127.0.0.1:8087/media"
+  host: 127.0.0.1
+
+runtime:
+  mode: "dev"
+  dev:
+    base_url: "http://127.0.0.1:8087"
+    media_base_url: "http://127.0.0.1:8087/media"
+
+content:
+  source: "local"
+  local_dir: "./content"
+
+markdown:
+  html_policy: "safe"   # материалы приходят от разных авторов: разметка в тексте не исполняется
+
+og_type_by_type:
+  home: "website"
+  article: "article"
+
+paths:
+  file_root: ./.notepub
+  artifacts_dir: ./.notepub/artifacts
+  snapshot_file: ./.notepub/snapshot/objects.json
+  cache_root: ./.notepub/cache
+
+theme:
+  dir: .
+  name: "theme"
+  templates_subdir: templates
+  assets_subdir: assets
+
+server:
+  listen: "127.0.0.1:8087"
+
+rules_path: ./rules.yaml
+
+# Слова шаблона. repo_url пуст, пока у репозитория нет адреса: ссылка «Предложить правку» тогда не выводится.
+settings:
+  site_name: "Вайбкодинг с нуля"
+  site_note: "Открытый курс для тех, кто не программист"
+  repo_url: ""
+  contact_url: "https://t.me/cookiespooky"
+
+robots:
+  disallow: []
+
+cache:
+  html_ttl_seconds: 600
+  stale_if_error_seconds: 604800

@@ -1,0 +1,6 @@
+/dist/
+/dist-dev/
+/.notepub/
+/.bin/
+.DS_Store
+__pycache__/

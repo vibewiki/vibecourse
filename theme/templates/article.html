@@ -1,0 +1,22 @@
+<article class="page">
+  <header class="page__head">
+    <p class="eyebrow">Ступень {{ .FM.step }}</p>
+    <h1>{{ .Page.Title }}</h1>
+    {{- if .FM.lead }}
+    <p class="lead">{{ .FM.lead }}</p>
+    {{- end }}
+  </header>
+  <div class="prose">
+    {{ .Body }}
+  </div>
+  {{- /* Подпись стоит под каждым материалом: кто написал и когда сам это проделал. Без неё сборка не проходит
+         (scripts/check.py). */}}
+  <footer class="byline">
+    <p>Автор: <a href="{{ .FM.author_url }}" rel="author noopener">{{ .FM.author }}</a>
+      {{- if .FM.checked }} · проверено {{ .FM.checked }}{{ end }}
+      {{- if .FM.tool }} · {{ .FM.tool }}{{ end }}</p>
+    {{- if .Settings.repo_url }}
+    <p><a href="{{ .Settings.repo_url }}">Предложить правку или свой материал →</a></p>
+    {{- end }}
+  </footer>
+</article>
