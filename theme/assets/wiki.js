@@ -19,3 +19,23 @@
   drawer.querySelector('[data-drawer-close]').addEventListener('click', function () { set(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
 })();
+
+/* Кнопка «Копировать» в правом верхнем углу каждого блока кода: тексты запросов в курсе берут целиком. */
+(function () {
+  if (!navigator.clipboard) return;
+  Array.prototype.forEach.call(document.querySelectorAll('.prose pre'), function (pre) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'code-copy';
+    btn.textContent = 'Копировать';
+    btn.addEventListener('click', function () {
+      var code = pre.querySelector('code') || pre;
+      navigator.clipboard.writeText(code.innerText.replace(/\n$/, '')).then(function () {
+        btn.textContent = 'Скопировано';
+        btn.classList.add('is-done');
+        setTimeout(function () { btn.textContent = 'Копировать'; btn.classList.remove('is-done'); }, 1600);
+      });
+    });
+    pre.appendChild(btn);
+  });
+})();

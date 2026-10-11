@@ -15,8 +15,6 @@
     <p>Автор: <a href="{{ .FM.author_url }}" rel="author noopener">{{ .FM.author }}</a>
       {{- if .FM.checked }} · проверено {{ .FM.checked }}{{ end }}
       {{- if .FM.tool }} · {{ .FM.tool }}{{ end }}</p>
-    {{- if .Settings.repo_url }}
-    <p><a href="{{ .Settings.repo_url }}">Предложить правку или свой материал →</a></p>
-    {{- end }}
+    <p><a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/">Предложить правку или свой материал →</a></p>
   </footer>
 </article>

@@ -23,6 +23,7 @@ markdown:
 
 og_type_by_type:
   home: "website"
+  page: "website"
   article: "article"
 
 paths:
@@ -47,6 +48,9 @@ settings:
   site_name: "Вайбкодинг с нуля"
   site_note: "Открытый курс для тех, кто не программист"
   repo_url: "https://github.com/vibewiki/vibecourse"
+  add_slug: "kak-dobavit-material"      # страница, куда ведёт «Добавить материал» в шапке
+  author_label: "Об авторе"
+  author_url: "https://antonlozhkin.ru/"
   contact_url: "https://t.me/cookiespooky"
 
 robots:

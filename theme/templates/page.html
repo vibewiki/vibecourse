@@ -1,0 +1,11 @@
+<article class="page">
+  <header class="page__head">
+    <h1>{{ .Page.Title }}</h1>
+    {{- if .FM.lead }}
+    <p class="lead">{{ .FM.lead }}</p>
+    {{- end }}
+  </header>
+  <div class="prose">
+    {{ .Body }}
+  </div>
+</article>

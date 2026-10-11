@@ -27,6 +27,10 @@ types:
     template: "home.html"
     permalink: "/"
     include_in: { sitemap: true, search: false }
+  page:            # служебная страница вне ступеней: как добавить материал
+    template: "page.html"
+    permalink: "/{{ slug }}/"
+    include_in: { sitemap: true, search: true }
   article:
     template: "article.html"
     permalink: "/{{ slug }}/"
@@ -37,7 +41,7 @@ types:
 links:
   - name: "wiki"
     kind: "wikilinks"
-    from_types: ["home", "article"]
+    from_types: ["home", "page", "article"]
     resolve_by: "wikimap"
 
 # По коллекции на ступень: боковое меню (theme/templates/partials/sidebar.html) печатает их по очереди.
@@ -135,7 +139,7 @@ collections:
     limit: 100
 
 sitemap:
-  include_types: ["home", "article"]
+  include_types: ["home", "page", "article"]
   exclude_drafts: true
 
 search:

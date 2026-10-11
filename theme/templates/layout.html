@@ -24,16 +24,24 @@
   <title>{{ .Title }}</title>
 </head>
 <body>
-  {{- /* Узкий экран: полоса с названием и кнопкой, меню выезжает справа. Широкий: меню стоит слева, полосы нет. */}}
+  {{- /* Шапка на всех экранах: название курса и строка о нём, справа — «Добавить материал» и «Об авторе».
+         На узком экране ссылки уходят в ящик, на их месте кнопка содержания; меню выезжает справа. */}}
   <header class="top">
-    <a class="top__brand" href="{{ .BaseURL }}/">{{ .Settings.site_name }}</a>
-    <button class="top__burger" type="button" data-drawer-open aria-controls="drawer" aria-expanded="false" aria-label="Открыть содержание"><span aria-hidden="true"></span></button>
+    <div class="top__inner">
+      <a class="top__brand" href="{{ .BaseURL }}/">
+        <span class="top__name">{{ .Settings.site_name }}</span>
+        <span class="top__note">{{ .Settings.site_note }}</span>
+      </a>
+      <nav class="top__links" aria-label="О курсе">
+        <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/"{{ if eq .Page.Slug .Settings.add_slug }} aria-current="page"{{ end }}>Добавить материал</a>
+        <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
+      </nav>
+      <button class="top__burger" type="button" data-drawer-open aria-controls="drawer" aria-expanded="false" aria-label="Открыть содержание"><span aria-hidden="true"></span></button>
+    </div>
   </header>
 
   <div class="wrap">
     <aside class="side">
-      <a class="side__brand" href="{{ .BaseURL }}/">{{ .Settings.site_name }}</a>
-      <p class="side__note">{{ .Settings.site_note }}</p>
       {{ template "sidebar.html" . }}
     </aside>
     <main class="main">
@@ -48,6 +56,10 @@
       <button class="drawer__close" type="button" data-drawer-close aria-label="Закрыть">✕</button>
     </div>
     {{ template "sidebar.html" . }}
+    <p class="drawer__links">
+      <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/">Добавить материал</a>
+      <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
+    </p>
   </aside>
   <script src="{{ .AssetsBase }}/wiki.js" defer></script>
 </body>
