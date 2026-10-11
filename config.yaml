@@ -1,11 +1,11 @@
-# Вики-курс по вайбкодингу. Адрес сайта ещё не выбран: base_url — заглушка, пока курс не выложен.
+# Вики-курс по вайбкодингу. Выкладывается на GitHub Pages из репозитория vibewiki/vibecourse — адрес с путём /vibecourse.
 site:
   id: vibecoding-wiki
-  base_url: "https://example.invalid"
+  base_url: "https://vibewiki.github.io/vibecourse"
   title: "Вайбкодинг с нуля"
   description: "Открытый курс для тех, кто не программист: от оплаты и установки до своего сайта, приложения и бота."
   default_og_image: ""
-  media_base_url: "https://example.invalid/media"
+  media_base_url: "https://vibewiki.github.io/vibecourse/media"
   host: 127.0.0.1
 
 runtime:
@@ -42,11 +42,11 @@ server:
 
 rules_path: ./rules.yaml
 
-# Слова шаблона. repo_url пуст, пока у репозитория нет адреса: ссылка «Предложить правку» тогда не выводится.
+# Слова шаблона. Без repo_url ссылка «Предложить правку» не выводится.
 settings:
   site_name: "Вайбкодинг с нуля"
   site_note: "Открытый курс для тех, кто не программист"
-  repo_url: ""
+  repo_url: "https://github.com/vibewiki/vibecourse"
   contact_url: "https://t.me/cookiespooky"
 
 robots:
